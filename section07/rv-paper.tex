@@ -1,0 +1,94 @@
+\documentclass{article}
+
+\usepackage{fontspec}   %加這個就可以設定字體
+\usepackage{xeCJK}       %讓中英文字體分開設置
+\setCJKmainfont{AR PL UKai TW} %設定中文為系統上的字型，而英文不去更動，使用原TeX字型
+\setmainfont{Cabin} % 設定英文字型
+\XeTeXlinebreaklocale "zh"             %這兩行一定要加，中文才能自動換行
+\XeTeXlinebreakskip = 0pt plus 1pt     %這兩行一定要加，中文才能自動換行
+
+\usepackage{titling}
+\setlength{\droptitle}{-12em} % 將標題移動至頁面的上面
+
+
+\title{牛刀小試}
+\author{郭昌易}
+\date{} %不要日期
+
+\begin{document}
+\maketitle
+
+\section{題目}
+
+接下來將提供五道題目給予讀者進行練習，並在稍候附上提供的小提示以及參考解答。
+
+\begin{table}[h]
+\caption{題目清單}
+
+\begin{center}
+\begin{tabular}{||l||}
+\hline
+A.將車子右駕的行駛方向改為左邊駕駛\\
+\hline
+B. 車子可以單獨沿著一條膠帶行駛\\
+\hline
+C. 改變手把控制車子的方式\\
+\hline
+D. 自行設計一個FSM流程並實現\\
+\hline
+E. 車子能夠辨識一個物件並做出相對應動作\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection{題目A}
+
+原本車子的行進方向為右邊駕駛，行進時白色膠帶在車子的右邊、黃色膠帶在車子的左邊。此題則希望將右邊駕駛改為左邊駕駛，意即車子行進時，黃色膠帶在車子的右邊，而白色膠帶在車子的左邊。
+
+\begin{itemize}
+
+\item 建議可以往與處理顏色有關的節點為考慮的出發點，例如line-detector或者lane-filter。
+
+\end{itemize}
+
+\subsection{題目B}
+
+在一開始的設定裡，車子行進時需要搭配黃線與白線才能行駛，意即車子移動時會同時受到白線與黃線的影響。此題希望將車子轉變成可以沿著單條任意顏色的膠帶行走，並且不受其他顏色的膠帶干擾。
+
+\begin{itemize}
+
+\item 建議可以往與處理顏色有關的節點為考慮的出發點，例如line-detector或者lane-filter。
+
+\end{itemize}
+
+\subsection{題目C}
+
+此題希望能夠修改搖桿上的按鍵配置，以方便讀者更加熟悉ROS的實作。例如原先使用類比搖桿控制車子的前後左右，現在改為透過十字鍵來操控。
+
+\begin{itemize}
+
+\item 建議可以查閱joy-mapper的節點為參考出發點。
+\end{itemize}
+
+\subsection{題目D}
+
+此題希望能夠使讀者自行設計一個完整的FSM流程。例如車子遇到紅線會停下來並且左轉(由行進中的狀態轉為左轉狀態)，或是使用遙桿自由切換自動駕駛以及手動駕駛兩種狀態。
+
+\begin{itemize}
+
+\item 建議可以參考FSM章節的介紹。
+
+\end{itemize}
+
+\subsection{題目E}
+
+此題希望能夠使得車子俱備偵測物件的能力，並且與偵測到的物件進行互動。例如車子在自動駕駛時，若是遇上了一隻鴨子，則車子需停下來並且閃避，當確認前方無障礙物後，再進行自動駕駛。
+
+\begin{itemize}
+
+\item 建議可以先行研讀object-detector的節點以及FSM的實作方法後，再進行。
+
+\end{itemize}
+
+\end{document}
