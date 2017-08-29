@@ -1,9 +1,10 @@
+% !TEX encoding = UTF-8 Unicode
 \documentclass{article}
 
 \usepackage{fontspec}   %加這個就可以設定字體
 \usepackage{xeCJK}       %讓中英文字體分開設置
-\setCJKmainfont{標楷體} %設定中文為系統上的字型，而英文不去更動，使用原TeX字型
-\setmainfont{Calibri} % 設定英文字型
+\setCJKmainfont{BiauKai} %設定中文為系統上的字型，而英文不去更動，使用原TeX字型
+\setmainfont{Times} % 設定英文字型
 \XeTeXlinebreaklocale "zh"             %這兩行一定要加，中文才能自動換行
 \XeTeXlinebreakskip = 0pt plus 1pt     %這兩行一定要加，中文才能自動換行
 
@@ -29,7 +30,8 @@
         \includegraphics[width=250pt]{pic/圖片1.jpg}
     \end{center}
 \end{figure}
-\\另外，有時鏡頭本身的誤差或是特性也需要利用相機校正來處理，像是我們所用的鏡頭為廣角的魚眼鏡頭，因此畫面會有扭曲的現象，而藉由相機校正則可以把左邊魚眼扭曲的畫面修正為右邊方正不扭曲的畫面。
+\\
+另外，有時鏡頭本身的誤差或是特性也需要利用相機校正來處理，像是我們所用的鏡頭為廣角的魚眼鏡頭，因此畫面會有扭曲的現象，而藉由相機校正則可以把左邊魚眼扭曲的畫面修正為右邊方正不扭曲的畫面。
 \\
 \begin{figure}[htp]
     \begin{center}
@@ -46,8 +48,7 @@
         \includegraphics[width=300pt]{pic/圖片3.jpg}
     \end{center}
 \end{figure}
-
-我們也可以藉由流程圖更清楚瞭解相機校正的運作。
+\\\\\\\\\\我們也可以藉由流程圖更清楚瞭解相機校正的運作。
 \\首先內部校正的部分，會先產生有一個內部校正矩陣，它可以幫我們把3D的座標投影到2D的座標，另外內部校正也負責處理失真的問題，包括扭曲及傾斜失真。
 \\至於在外部校正的部分，是用來讓真實世界座標與相機座標契合，也就是利用旋轉及移動讓兩個座標契合。
 \\
@@ -56,7 +57,7 @@
         \includegraphics[width=300pt]{pic/圖片4.jpg}
     \end{center}
 \end{figure}
-
+\\
 下面公式則是相機座標利用數學運算的原理。
 \\
 \begin{figure}[htp]
@@ -106,7 +107,7 @@
         \includegraphics[width=270pt]{pic/圖片10.jpg}
     \end{center}
 \end{figure}
-\\
+\\\\\\\\\\\\\\
 利用K及P兩種修正參數，我們可以把影像座標重新校正，運算方法就是利用下面的公式:
 \\
 \begin{figure}[htp]
@@ -196,7 +197,7 @@ In laptop, connect laptop and duckiebot to access point
         \includegraphics[width=300pt]{pic/圖片16.jpg}
     \end{center}
 \end{figure}
-
+\\
 開啟 camera \& ground projection
 \\duckiebot \$ cd \~/duckietown
 \\duckiebot \$ source environment.sh
@@ -239,12 +240,13 @@ In laptop, connect laptop and duckiebot to access point
 觀察你所改變的檔案
 \\laptop \$ cd \~/duckietown
 \\laptop \$ git status
+\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片17.jpg}
     \end{center}
 \end{figure}
-
+\\\\\\\\\\\\\\\\
 你所更改的檔案將會變成紅色
 \\Git add \& commit \& push
 \\laptop \$git add catkin\_ws/src/duckietown/config/baseline/calibration/camera\_extrinsic/ duckiebot.yaml catkin\_ws/src/duckietown/config/baseline/calibration/ camera\_intrinsic/duckiebot.yaml
@@ -256,7 +258,7 @@ In laptop, connect laptop and duckiebot to access point
         \includegraphics[width=300pt]{pic/圖片18.jpg}
     \end{center}
 \end{figure}
-
+\\
 當add完以後檔案將會呈現綠色
 \\laptop \$ git commit -m "duckiebot camera calibration"
 \\laptop \$ git push
@@ -313,12 +315,6 @@ duckiebot \$ cd \~/duckietown
 \\
 \\他會顯示當前的影像，當你點及影像中的圖片時，他會回傳那個點的ground座標
 \\
-\begin{figure}[htp]
-    \begin{center}
-        \includegraphics[width=300pt]{pic/圖片21.jpg}
-    \end{center}
-\end{figure}
-
 按照上方順序點取所標示的六個點，他會回傳如下資訊:
 \\
 \\image coordinate: (168, 331)
@@ -346,7 +342,14 @@ duckiebot \$ cd \~/duckietown
 \\4.(0.315, 0.093, 0.0)
 \\5.(0.315, 0.0, 0.0)
 \\6.(0.315, 0.093,0.0)
-\\與ground truth做比較，注意比較近的點(1, 2, 3) 會有比較小的誤差 (大約 1~2 millimeter), 然而比較遠的點 (4, 5, 6) 有相對比較大的誤差 (大約 1~2 centimeter)。
+\\
+\begin{figure}[htp]
+    \begin{center}
+        \includegraphics[width=300pt]{pic/圖片21.jpg}
+    \end{center}
+\end{figure}
+\\
+與ground truth做比較，注意比較近的點(1, 2, 3) 會有比較小的誤差 (大約 1~2 millimeter), 然而比較遠的點 (4, 5, 6) 有相對比較大的誤差 (大約 1~2 centimeter)。
 \\
 \\如果你的ground coordinates和ground truth coordinates相似的話，你的相機校正就告一個段落，按 ‘ESC’ 離開
 
@@ -409,7 +412,7 @@ duckiebot $ cd ~/duckietown
 
 \subsection{為何需要有限狀態機？}
 
-首先設著想一下下圖的情況，如果現在有一台車子放在軌道上，照道理它會循跡自走，所以他應該要右轉，但是這時我們又用遙控器叫它向左轉，踏它到底該選擇循跡自走向右轉還是選擇聽從遙控器的指令向右呢？於是這時候我們就需要有限狀態機來幫我們，有限狀態機主要由”事件”和”狀態”組成，也就是當我們遇到一個特定的事件，它就會跳到特定的狀態，藉此車子就會知道他這時到底該循跡還是該聽從遙控器。
+首先設著想一下下圖的情況，如果現在有一台車子放在軌道上，照道理它會循跡自走，所以他應該要右轉，但是這時我們又用遙控器叫它向左轉，踏它到底該選擇循跡自走向右轉還是選擇聽從遙控器的指令向右呢？於是這時候我們就需要有限狀態機來幫我們，有限狀態機主要由”事件”和”狀態”組成，也就是當我們遇到一個特定的事件，它就會跳到特定的狀態，藉此車子就會知道他這時到底該循跡還是該聽從遙控器。\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=200pt]{pic/圖片24.jpg}
@@ -426,14 +429,14 @@ duckiebot $ cd ~/duckietown
 
 \subsection{Duckietown中的有限狀態機}
 
-下圖是Duckietown完整的有限狀態機示意圖
-
+下頁最下圖是Duckietown完整的有限狀態機示意圖
+\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片26.jpg}
     \end{center}
 \end{figure}
-
+\\\\\\
 有限狀態機是在\~/duckietown/catkin\_ws/src/duckietown/config/baseline/fsm/fsm\_node/default.yaml這個檔案中所設定的，以下圖部分程式碼為例，我們可以看到現在車子是搖控器控制(JOYSTICK CONTROL)的狀態，所以當我們遇到”joystick\_override\_off”這個事件時，車子就會跳到循跡自走(LANE\_FOLLOWING)的狀態，那下方active\_node是在說在搖控器控制(JOYSTICK CONTROL)這個狀態下所要開啟的node。
 \\
 
@@ -471,7 +474,7 @@ duckiebot $ cd ~/duckietown
 \\duckiebot \$ source environment.sh
 \\duckiebot \$ source set\_ros\_master.sh duckiebot
 \\duckiebot \$ source set\_vehicle\_name.sh duckiebot
-\\duckiebot \$ roslaunch duckietown\_demos lane\_following.launch veh:=duckiebot line\_detector\_param\_file\_name:=universal
+\\duckiebot \$ roslaunch duckietown\_demos lane\_following.launch veh:=duckiebot \\line\_detector\_param\_file\_name:=universal
 \\
 \\設定FSM:
 \\laptop \$ cd \~/duckietown

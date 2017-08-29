@@ -1,19 +1,19 @@
+% !TEX encoding = UTF-8 Unicode
 \documentclass{article}
 
 \usepackage{fontspec}   %加這個就可以設定字體
 \usepackage{xeCJK}       %讓中英文字體分開設置
-\setCJKmainfont{標楷體} %設定中文為系統上的字型，而英文不去更動，使用原TeX字型
-\setmainfont{Calibri} % 設定英文字型
+\setCJKmainfont{BiauKai} %設定中文為系統上的字型，而英文不去更動，使用原TeX字型
+\setmainfont{Times} % 設定英文字型
 \XeTeXlinebreaklocale "zh"             %這兩行一定要加，中文才能自動換行
 \XeTeXlinebreakskip = 0pt plus 1pt     %這兩行一定要加，中文才能自動換行
 
 \usepackage{titling}
 \setlength{\droptitle}{-12em} % 將標題移動至頁面的上面
 
-
 \title{第二章、Duckietown電腦端之環境架設}
 
-\author{林哲民}
+\author{林哲}
 \date{} %不要日期
 
 \begin{document}
@@ -28,15 +28,16 @@ Duckietown之程式運作所使用的系統作業軟體是Linux Ubuntu 14.04，�
 \\VirtualBox是一套免費開放原始碼的虛擬電腦軟體，讓你在原有的系統架構下再建立出一台或是多台的新電腦。且可以在虛擬電腦裡安裝不同的作業系統，或是進行軟體測試，最重要的是在虛擬電腦裡所進行的動作皆不會影響或干擾到原有的電腦。接下來，我們會教學如何設定VirtualBox。
 \\
 \\步驟一、下載VirtualBox
-\\官方網站(https://www.virtualbox.org/wiki/Downloads)有提供載點根據你筆電的作業系統進行下載。
-
+官方網站(https://www.virtualbox.org/wiki/Downloads)有提供載點根據你筆電的作業系統進行下載。
+\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=250pt]{pic/圖片1.jpg}
     \end{center}
 \end{figure}
+\\
 已知有支援的作業系統：Windows7/10 64 bit; Ubuntu 14.04.3 32/64 bit; MacBook Pro (mid-2014)
-\\步驟二、取得VirtualBox映像檔
+\\\\步驟二、取得VirtualBox映像檔
 \\針對Duckietown，我們已經準備相對應之映像檔供學生使用，連結如下：
 robotic-vision-v2 (in progress)：
 https://drive.google.com/open?id=0B6vRmsV8B-ToQTJ3UmRzVHIyYXc
@@ -67,11 +68,10 @@ https://drive.google.com/open?id=0B6vRmsV8B-ToQTJ3UmRzVHIyYXc
         \includegraphics[width=300pt]{pic/圖片5.jpg}
     \end{center}
 \end{figure}
-\\
-\\步驟四、VirtualBox網路設定
-\\為了讓虛擬機器能連線到樹莓派，你需要沿著以下步驟去設定網路:
-設定值 -> 網路 -> 橋接介面卡，當你使用公共網路若是無法使用橋接介面卡時，切換成NAT。
 
+步驟四、VirtualBox網路設定
+\\為了讓虛擬機器能連線到樹莓派，你需要沿著以下步驟去設定網路: 
+\\設定值 -> 網路 -> 橋接介面卡，當你使用公共網路若是無法使用橋接介面卡時，切換成NAT。
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片6.jpg}
@@ -197,14 +197,15 @@ ROS又稱作為RobotOS，是專門為了機器人軟體開發所設計出的一�
 \\
 \\ROS Package：
 \\ROS Package的概念就是一個概括所有程式驅動、溝通橋樑及程式碼的集合體，是一個完整的程式組織。舉例來說，若今天要做一個人臉辨識之專題，所有的跑動程式碼、參數及相關之檔案都會放在一個名為Face Detection的Package裡。因此，在架構一個完整的系統時，必須建立一個屬於該系統之Package。ROS在建立Package上很容易，只需陸續在添入一些功能就好。
-\\舉例來說，以下資料夾均為Duckietown中(catkin_ws/src)之 Package：
-
+\\舉例來說，以下資料夾均為Duckietown中(catkin\_ws/src)之 Package：
+\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片17.jpg}
     \end{center}
 \end{figure}
-\\ROS Node & Topic：
+
+ROS Node \& Topic：
 \\ROS Node在ROS中就是扮演著主要運行之核心程式碼的角色，每一個Node都是獨立運算之程式。Node一般可由C++或python構成，主要程式內容極為整個程式所使用到之功能、演算法等。而在不同的Node之間，Topic擔任資訊傳遞之角色。最主要是以Publish/Subscribe進行多個Node之間的訊息傳遞。在一個大系統中會概括許多個Node，而Topic即支援多對多之間的通訊。
 \begin{figure}[htp]
     \begin{center}
