@@ -1,5 +1,14 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass{article}
+\usepackage{geometry} % 設定邊界
+\geometry{
+  top=2in,
+  inner=1in,
+  outer=1in,
+  bottom=1in,
+  headheight=3ex,
+  headsep=2ex
+}
 
 \usepackage{fontspec}   %加這個就可以設定字體
 \usepackage{xeCJK}       %讓中英文字體分開設置
@@ -13,7 +22,7 @@
 
 \title{第二章、Duckietown電腦端之環境架設}
 
-\author{林哲}
+\author{林哲民}
 \date{} %不要日期
 
 \begin{document}
@@ -45,6 +54,7 @@ https://drive.google.com/open?id=0B6vRmsV8B-ToQTJ3UmRzVHIyYXc
 \\
 \\步驟三、VirtualBox之設置
 \\新增 -> Linux -> 64bit -> 記憶體大小2G -> 選擇映像檔(.vdi)
+\\\\\\\\\\\\\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片2.jpg}
@@ -123,6 +133,7 @@ https://drive.google.com/open?id=0B6vRmsV8B-ToQTJ3UmRzVHIyYXc
 \\duckiebot \$ sudo reboot
 \\重啟完畢後，進行網路測試：
 \\duckiebot \$ ping google.com
+\\\\\\\\\\\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片12.jpg}
@@ -148,15 +159,12 @@ https://drive.google.com/open?id=0B6vRmsV8B-ToQTJ3UmRzVHIyYXc
 \\此範例中，我們使用的是TP-Link之路由器。不同之分享器有不同之IP。
 \\打開一個瀏覽器輸入網址”192.168.0.254”，進行登入。
 \\使用者名稱: admin   密碼: admin
+\\\\\\\\\\\\\\\\\\\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片14.jpg}
     \end{center}
 \end{figure}
-\\
-\\
-\\
-\\
 \\步驟三、進行IP預留之設定
 \\“進階設定” -> “DHCP” -> “位址保留” -> “新增”
 \begin{figure}[htp]
@@ -170,11 +178,9 @@ https://drive.google.com/open?id=0B6vRmsV8B-ToQTJ3UmRzVHIyYXc
 \\請手動重啟你的路由器，並同時重啟機器端：
 \\duckiebot \$ sudo reboot
 
-\section{程式環境架設}
-在正式開始軟體部分前，我們必須先確定能透過Wi-Fi分享器以電腦端去對機器端進行遠端操作。首先先把機器端電源開啟並將電腦端Ubuntu開啟。
-
 \subsection{遠端操作機器}
-啟用Ubuntu後，我們須先將前一部分預留之機器端IP加到VirtualBox中：
+在正式開始軟體部分前，我們必須先確定能透過Wi-Fi分享器以電腦端去對機器端(也就是你的鴨子車)進行遠端操作。首先先把機器端電源開啟並將電腦端Ubuntu開啟。
+\\啟用Ubuntu後，我們須先將前一部分預留之機器端IP加到VirtualBox中：
 \\\$ sudo vim /etc/hosts
 \begin{figure}[htp]
     \begin{center}
@@ -182,12 +188,23 @@ https://drive.google.com/open?id=0B6vRmsV8B-ToQTJ3UmRzVHIyYXc
     \end{center}
 \end{figure}
 \\在/etc/hosts中加上一行：192.168.0.XXX 你的車名.local
-\\接下來，透過ssh來進行遠端操作：
+\\\\接下來，透過ssh來進行遠端操作：
 \\\$ ssh ubuntu@your\_duckiebot.local     (此處your\_duckiebot為你的車名)
 \\ssh是一個可以讓我們使用筆電遠端登入機器，並去操控機器執行指令
+\\\\如果你不確定是否鴨子車是否有連線，你可以試著去ping他，指令跟我們ping google時相似。
+\\duckietop \& ping your\_duckiebot.local
+\\若車子有連上線，則鴨子車就會回傳東西，否則就是一直收不到訊息。
+\\
+\\接下來我們就可以遠端連進車上的Rpi裡，而不需要每次都連接螢幕。你可以使用Joystick和Camera測試看看。請參考1-4。
 
-\subsection{程式環境掛載及彙編}
+\newpage
+\section{電腦端軟體架設}
 
+\subsection{創造自己的遠端Git儲存庫}
+Duckietown是一個開源的軟體，在程式碼在Github上面都有。Github除了可以讓我們將各種開源的程式碼放在上面做分享以外，他也是一個版本控制的工具。也就是說，當我們在程式碼中做一些更改後，可以把它儲存到雲端上面，Duckietown在研發時就是用這種方法一起協同創作。而我們可以將開源的程式碼複製一份到我們的儲存庫中，往後有所更改時就可以存在上面。
+\\目前在這份映像檔中的duckietown資料夾，是從ARG實驗室的github帳號複製下來的，也就是說我們雖然可已使用他，但我們無法上傳到雲端去，除非獲得該帳號擁有者的同意。
+
+\newpage
 \section{ROS架構介紹及應用}
 ROS又稱作為RobotOS，是專門為了機器人軟體開發所設計出的一套作業系統。他是一個開源的系統，任何人都可以在ROS上機器人相關之功能、系統。且其在系統間之溝通，是一個極為優秀之跨平台軟體通訊機制，藉由不同節點間之溝通去達到最佳效果。此外，在ROS本身就蘊含龐大的Library，其中不論是感測器資料、2或3D模擬介面、特定演算法資料庫等等，都廣為開放在ROS平台中。因此，使用者可以輕鬆地去使用其中之工具於研究之機器人平台上，並加以延伸應用。
 
@@ -209,10 +226,11 @@ ROS Node \& Topic：
 \\ROS Node在ROS中就是扮演著主要運行之核心程式碼的角色，每一個Node都是獨立運算之程式。Node一般可由C++或python構成，主要程式內容極為整個程式所使用到之功能、演算法等。而在不同的Node之間，Topic擔任資訊傳遞之角色。最主要是以Publish/Subscribe進行多個Node之間的訊息傳遞。在一個大系統中會概括許多個Node，而Topic即支援多對多之間的通訊。
 \begin{figure}[htp]
     \begin{center}
-        \includegraphics[width=300pt]{pic/圖片18.jpg}
+        \includegraphics[width=200pt]{pic/圖片18.jpg}
     \end{center}
 \end{figure}
 \\舉例來說，Duckietown中每個Package也都概括許多Node：
+\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片19.jpg}
@@ -256,6 +274,57 @@ ROS Node \& Topic：
 
 
 \subsection{機器端之ROS應用}
+首先我們一樣要編譯在筆電端的程式碼，基本上就如我們在鴨子車端所做的事。
+\\laptop \$ cd ～/duckietown
+\\laptop \$ source environment.sh
+\\laptop \$ cd catkin\_ws
+\\laptop \$ catkin\_make
+\\重複 “catkin\_make” 直到 "[100\%]"
+\\
+\\
+\\接下來我們將使用使用camera node，也就是相機的node來試著使用ROS系統。另外我們也會使用ROS中的視覺化軟體RVIZ，看看Camera node傳來的Topic是什麼樣子
+\begin{figure}[htp]
+    \begin{center}
+        \includegraphics[width=400pt]{pic/圖片24.png}
+    \end{center}
+\end{figure}
+\\首先，請先ssh進到你的鴨子車裡面
+\\laptop \$ ssh ubuntu@your\_duckiebot.local
+\\
+\\進到鴨子車裡面後，開啟camera node，不過一樣請記得，在使用ROS的功能前，一定要設定好環境以及master。
+\\duckiebot \$ cd ～/duckietown
+\\duckiebot \$ source environment.sh
+\\（這個指令會設定環境）
+\\duckiebot \$ source set\_ros\_master.sh [duckiebot]
+\\（這個指令會設定master在你的鴨子車上）
+\\duckiebot \$ roslaunch duckietown camera.launch veh:=[duckiebot]
+\\This launches camera node and a roscore(like a data center)
+\\
+\\開啟另一個終端機，並依照以下指令
+\\laptop \$ cd ～/duckietown
+\\laptop \$ source environment.sh
+\\laptop \$ source set\_ros\_master.sh [duckiebot]
+\\（你會發現我們兩端的master都設在鴨子車上面，所以兩端就會在同一個master下面進行溝通）
+\\laptop \$ rostopic list
+\\這個指令會列出目前在這個master下的topic
+\\你應該會看到:
+\\/rosout
+\\/rosout\_agg
+\\/duckiebot/camera\_node/camera\_info
+\\/duckiebot/camera\_node/image/compressed
+\\
+\\最後，我們要開啟RVIZ來視覺化camera node所發出來的topic
+\\laptop \$ rviz 
+\\在左下方, 點擊 Add->By topic->/duckiebot->/camera\_node/image/compressed
+\\就會有一個視窗跑出來，顯示你目前鴨子車傳來的圖像。
+
+
+
+
+
+
+
+
 
 
 
