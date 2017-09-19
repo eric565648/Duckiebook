@@ -350,15 +350,21 @@ State(狀態)可以用來描述一系列機器人與環境可以對未來造成�
 將這些得到的線段位置拿去做一個“投票”的動作，就可以決定出車子的位置。
 \\\\\\\\\\\\\\\\
 \subsection{Car Command (車體控制)}
-最後我們若得到車子的相對位置，就可以對他進行相對應的控制。
+最後我們若得到車子的相對位置，就可以對他進行相對應的控制，利用一個car\_commend的函數來發出一個topic。
+\begin{figure}[htp]
+    \begin{center}
+        \includegraphics[width=250pt]{pic/3_3_6.png}
+    \end{center}
+\end{figure}
 
 \subsection{小試身手！}
 說了這麼多，我們不如直接來試試看吧！在我們開始之前有一些部分要進行設定，為了等等的車體控制的部分。
 \\首先我們需要跟改筆電這裡的hostname，請更改robotvision至你想要的hostname
 \\\$ duckietop: sudo vim /etc/hostname 
+\\\\\\\\\\
 \begin{figure}[htp]
     \begin{center}
-        \includegraphics[width=400pt]{pic/3_3_3.png}
+        \includegraphics[width=300pt]{pic/3_3_3.png}
     \end{center}
 \end{figure}
 \\
@@ -366,7 +372,7 @@ State(狀態)可以用來描述一系列機器人與環境可以對未來造成�
 \\\$ duckietop: sudo vim /etc/hosts
 \begin{figure}[htp]
     \begin{center}
-        \includegraphics[width=400pt]{pic/3_3_4.png}
+        \includegraphics[width=300pt]{pic/3_3_4.png}
     \end{center}
 \end{figure}
 \\
@@ -374,7 +380,7 @@ State(狀態)可以用來描述一系列機器人與環境可以對未來造成�
 \\\$ duckiebot: sudo vim /etc/hosts 
 \begin{figure}[htp]
     \begin{center}
-        \includegraphics[width=400pt]{pic/3_3_5.png}
+        \includegraphics[width=300pt]{pic/3_3_5.png}
     \end{center}
 \end{figure}
 \\
