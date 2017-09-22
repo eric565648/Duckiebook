@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2017.7.27)  29 AUG 2017 10:15
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2017.7.27)  22 SEP 2017 12:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1213,9 +1213,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 153--272
  []
 
 
-Overfull \hbox (28.7181pt too wide) in paragraph at lines 153--272
-\TU/Times(0)/m/n/10 duckiebot $ cp  / duckietown/ catkin_ws/ src/ spring2016_nc
-tu/ wama/ duckietown_wama/ launch/ ros_cv_example_wama.launch
+Overfull \hbox (37.05142pt too wide) in paragraph at lines 153--272
+\TU/Times(0)/m/n/10 duckiebot $ cp \TU/BiauKai(0)/m/n/10 ～\TU/Times(0)/m/n/10 /
+ duckietown/ catkin_ws/ src/ spring2016_nctu/ wama/ duckietown_wama/ launch/ ro
+s_cv_example_wama.launch
  []
 
 
@@ -1267,9 +1268,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 153--272
  []
 
 
-Overfull \hbox (40.38313pt too wide) in paragraph at lines 153--272
-\TU/Times(0)/m/n/10 duckiebot $ cp  / duckietown/ catkin_ws/ src/ spring2016_nc
-tu/ wama/ ros_cv_example_wama/ src/ ros_cv_example_wama_node.py
+Overfull \hbox (48.71646pt too wide) in paragraph at lines 153--272
+\TU/Times(0)/m/n/10 duckiebot $ cp \TU/BiauKai(0)/m/n/10 ～\TU/Times(0)/m/n/10 /
+ duckietown/ catkin_ws/ src/ spring2016_nctu/ wama/ ros_cv_example_wama/ src/ r
+os_cv_example_wama_node.py
  []
 
 
@@ -1278,9 +1280,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 153--272
  []
 
 
-Overfull \hbox (72.03352pt too wide) in paragraph at lines 153--272
-\TU/Times(0)/m/n/10 duckiebot $ cp  / duckietown/ catkin_ws/ src/ spring2016_nc
-tu/ wama/ ros_cv_example_wama/ launch/ ros_cv_example_wama_node.launch
+Overfull \hbox (80.36685pt too wide) in paragraph at lines 153--272
+\TU/Times(0)/m/n/10 duckiebot $ cp \TU/BiauKai(0)/m/n/10 ～\TU/Times(0)/m/n/10 /
+ duckietown/ catkin_ws/ src/ spring2016_nctu/ wama/ ros_cv_example_wama/ launch
+/ ros_cv_example_wama_node.launch
  []
 
 

@@ -1,5 +1,14 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass{article}
+\usepackage{geometry} % 設定邊界
+\geometry{
+  top=2in,
+  inner=1in,
+  outer=1in,
+  bottom=1in,
+  headheight=3ex,
+  headsep=2ex
+}
 
 \usepackage{fontspec}   %加這個就可以設定字體
 \usepackage{xeCJK}       %讓中英文字體分開設置
@@ -42,7 +51,7 @@
 \subsection{相機校正運作原理}
 
 相機校正主要分為兩個部分，一個是外部校正，一個是內部校正。外部校正主要是在將世界真實座標與相機座標契合，是一個3D到3D的轉換，至於內部校正，則是把相機的3D影像的座標投影在2D的影像上面。
-\\
+\\\\\\\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片3.jpg}
@@ -85,7 +94,7 @@
 \end{figure}
 
 但是我們還得考慮一件事，也就是我們剛剛計算的方法是假設影像平面(Image Plane)的中心是剛好位在Z軸上，所以才能理想的使用相似三角形，但大多數的狀況是影像平面的中心不會剛好位在Z軸上，所以我們修正一下上面得到的結果，假如現在影像平面的中心不在Z軸上而在(tu, tv)，那我們只要利用平移就可以先把影像中心移到Z軸上，然後再以相似三角形得到內部校正矩陣。
-\\
+\\\\\\\\\\\\\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片8.jpg}
@@ -127,7 +136,7 @@
 \subsection{相機外部校正}
 
 4-1-2已經提過相機外部校正是為了用來把真實世界座標與相機座標契合，這主要分為兩個步驟，一個是旋轉，一個是平移，藉由這兩個步驟，便能把兩個座標互相契合了。
-\\
+\\\\\\\\\\\\\\\\\\\\\\\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=250pt]{pic/圖片13.jpg}
@@ -153,7 +162,7 @@
 \subsection{Duckiebot相機內部校正}
 
 In laptop, connect laptop and duckiebot to access point
-\\duckiebot \$ cd ~/duckietown
+\\duckiebot \$ cd ～/duckietown
 \\duckiebot \$ source environment.sh
 \\duckiebot \$ source set\_ros\_master.sh duckiebot
 \\duckiebot \$ roslaunch duckietown intrinsic\_calibration.launch veh:=duckiebot raw:=true
@@ -176,22 +185,22 @@ In laptop, connect laptop and duckiebot to access point
 
 \end{itemize}
 
-校正檔案儲存位置: \~/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_intrinsic/veh\_name.yaml
+校正檔案儲存位置: ～/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_intrinsic/veh\_name.yaml
 \\
 \\確認校正檔案
-\\duckiebot\$ cd \~/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_intrinsic
+\\duckiebot\$ cd ～/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_intrinsic
 \\duckiebot\$ ls
 \\你可以看到 “duckiebot.yaml”.
 \\duckiebot\$ cat duckiebot.yaml
 \\你可以在 duckiebot.yaml裡面看到你的校正參數
 \\從Duckietop複製校正檔案到電腦中
-\\laptop \$ cd \~/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_intrinsic/
-\\laptop \$ scp ubuntu@duckiebot.local:\~/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_intrinsic/duckiebot.yaml duckiebot.yaml
+\\laptop \$ cd ～/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_intrinsic/
+\\laptop \$ scp ubuntu@duckiebot.local:～/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_intrinsic/duckiebot.yaml duckiebot.yaml
 
 \subsection{Duckiebot相機外部校正}
 
 把你的車如圖放置:
-\\
+\\\\\\\\\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片16.jpg}
@@ -199,7 +208,7 @@ In laptop, connect laptop and duckiebot to access point
 \end{figure}
 \\
 開啟 camera \& ground projection
-\\duckiebot \$ cd \~/duckietown
+\\duckiebot \$ cd ～/duckietown
 \\duckiebot \$ source environment.sh
 \\duckiebot \$ source set\_ros\_master.sh duckiebot
 \\duckiebot \$ byobu
@@ -208,7 +217,7 @@ In laptop, connect laptop and duckiebot to access point
 \\在另一個終端機上:
 \\duckiebot \$ roslaunch ground\_projection ground\_projection.launch  veh:=duckiebot local:=1
 \\在電腦中開啟一個終端機
-\\laptop \$ cd \~/duckietown
+\\laptop \$ cd ～/duckietown
 \\laptop \$ source environment.sh
 \\laptop \$ source set\_ros\_master.sh duckiebot
 \\laptop \$ rostopic list
@@ -230,15 +239,15 @@ In laptop, connect laptop and duckiebot to access point
 \\估測 homography
 \\laptop \$ rosservice call /duckietbot/ground\_projection/estimate\_homography
 \\homography檔案會在下列位置處找到
-\\\~/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_extrinsic/duckiebot.yaml
+\\～/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_extrinsic/duckiebot.yaml
 \\從Duckietop複製校正檔案到電腦中
-\\laptop \$ cd \~/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_extrinsic/
-\\laptop \$ scp ubuntu\@duckiebot.local:\~/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_extrinsic/duckiebot.yaml duckiebot.yaml
+\\laptop \$ cd ～/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_extrinsic/
+\\laptop \$ scp ubuntu\@duckiebot.local:～/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/camera\_extrinsic/duckiebot.yaml duckiebot.yaml
 
 \subsection{上傳校正檔案到Github repo}
 
 觀察你所改變的檔案
-\\laptop \$ cd \~/duckietown
+\\laptop \$ cd ～/duckietown
 \\laptop \$ git status
 \\
 \begin{figure}[htp]
@@ -267,15 +276,9 @@ In laptop, connect laptop and duckiebot to access point
 
 比較 /image\_mono 和 /image\_rec
 \\比較扭曲的棋盤和沒有扭曲的棋盤
-\\如同外部校正時所擺放的樣子:
-
-\begin{figure}[htp]
-    \begin{center}
-        \includegraphics[width=300pt]{pic/圖片19.jpg}
-    \end{center}
-\end{figure}
-
-duckiebot \$ cd \~/duckietown
+\\請將車子擺放如同外部校正時所擺放的樣子:
+\\
+\\duckiebot \$ cd ～/duckietown
 \\duckiebot \$ source environment.sh
 \\duckiebot \$ source set\_ros\_master.sh duckiebot
 \\duckiebot \$ byobu
@@ -301,7 +304,7 @@ duckiebot \$ cd \~/duckietown
 
 測試 ground projection
 \\In laptop, connect laptop and duckiebot to access point
-\\duckiebot \$ cd \~/duckietown
+\\duckiebot \$ cd ～/duckietown
 \\duckiebot \$ source environment.sh
 \\duckiebot \$ source set\_ros\_master.sh duckiebot
 \\duckiebot \$ byobu
@@ -358,12 +361,13 @@ duckiebot \$ cd \~/duckietown
 \subsection{為何需要車輪校正?}
 
 車輪校正的主要目的有兩個，首先，是為了要修正機硬體上所產生的誤差，像是車子明明要走直線，卻偏向了右邊，第二個目的，是要調整車子的速度，以免在循跡駕駛時，車速過快導致偏移軌道。
-\\
+\\\\\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片22.jpg}
     \end{center}
 \end{figure}
+\\
 車子會無法走直線的原因有很多種，主要是硬體方面的誤差所導致，像是兩邊的輪子大小可能會不太相同，抑或是車上所放置的行動電源等物體導致車子左右重量不均，都有可能導致車子無法走直線，因此我們利用改變兩邊馬達的PWM輸出，使得車子能夠走直線。至於在快慢的部分，則是改變gain，也就是改變馬達的電壓輸出讓車子能達到自己想要的速度。
 \\
 \begin{figure}[htp]
@@ -374,7 +378,7 @@ duckiebot \$ cd \~/duckietown
 
 \subsection{在Duckiebot上執行輪子校正}
 
-duckiebot $ cd ~/duckietown
+duckiebot $ cd ～/duckietown
 \\duckiebot $ source environment.sh
 \\duckiebot $ source set_ros_master.sh duckiebot
 \\duckiebot $ byobu
@@ -402,11 +406,11 @@ duckiebot $ cd ~/duckietown
 \\duckiebot: \$ rosservice call /duckiebot/inverse\_kinematics\_node/save\_calibration 
 \\
 \\如果你是第一次做，他會創造一個 duckiebot.yaml 檔，並儲存在下列資料夾 :
-\\\~/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/kinematics
+\\～/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/kinematics
 \\
 \\把校正檔案從車子複製到電腦中
-\\laptop \$ cd \~/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/kinematics
-\\laptop \$ scp ubuntu@duckiebot.local:\~/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/kinematics/duckiebot.yaml duckiebot.yaml
+\\laptop \$ cd ～/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/kinematics
+\\laptop \$ scp ubuntu@duckiebot.local:～/duckietown/catkin\_ws/src/duckietown/config/baseline/calibration/kinematics/duckiebot.yaml duckiebot.yaml
 
 \section{有限狀態機Finite State Machine(FSM)}
 
@@ -420,13 +424,13 @@ duckiebot $ cd ~/duckietown
 \end{figure}
 \\
 以duckietown為例，我們只要”按下LB鍵”這個事件發生，車子就會跳到”循跡自走”這個狀態，而當我們有”按下start鍵”這個事件發生，車子就會跳到”搖控器控制”這個狀態，因此藉由有限狀態機，車子就不會感到困惑說到底該向左還是向右，因為它會遵循事件而跳到特定的狀態。
-
+\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片25.jpg}
     \end{center}
 \end{figure}
-
+\\
 \subsection{Duckietown中的有限狀態機}
 
 下頁最下圖是Duckietown完整的有限狀態機示意圖
@@ -437,24 +441,23 @@ duckiebot $ cd ~/duckietown
     \end{center}
 \end{figure}
 \\\\\\
-有限狀態機是在\~/duckietown/catkin\_ws/src/duckietown/config/baseline/fsm/fsm\_node/default.yaml這個檔案中所設定的，以下圖部分程式碼為例，我們可以看到現在車子是搖控器控制(JOYSTICK CONTROL)的狀態，所以當我們遇到”joystick\_override\_off”這個事件時，車子就會跳到循跡自走(LANE\_FOLLOWING)的狀態，那下方active\_node是在說在搖控器控制(JOYSTICK CONTROL)這個狀態下所要開啟的node。
-\\
-
+有限狀態機是在～/duckietown/catkin\_ws/src/duckietown/config/baseline/fsm/fsm\_node/default.yaml這個檔案中所設定的，以下圖部分程式碼為例，我們可以看到現在車子是搖控器控制(JOYSTICK CONTROL)的狀態，所以當我們遇到”joystick\_override\_off”這個事件時，車子就會跳到循跡自走(LANE\_FOLLOWING)的狀態，那下方active\_node是在說在搖控器控制(JOYSTICK CONTROL)這個狀態下所要開啟的node。
+\\\\\\\\\\\\\\
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片27.jpg}
     \end{center}
 \end{figure}
+\\
 
 \subsection{車子命令控制}
-
 回到剛剛的情境，假如現在我們已經利用有限狀態機讓車子知道該到哪個狀態了，例如說現在我們按下了”start”鍵讓車子進入搖控器控制的狀態，但是我們是怎麼讓車子一進到這個狀態，便只聽從遙控器的指令而不是軌跡所給的指令呢？這就是靠著車子命令控制的幫忙來達成。
 \begin{figure}[htp]
     \begin{center}
         \includegraphics[width=300pt]{pic/圖片28.jpg}
     \end{center}
 \end{figure}
-我們可以看到\~/duckietown/catkin\_ws/src/duckietown/config/baseline/dagu\_car/car\_cmd\_switch\_node/default.yaml這個檔案，下圖是部分程式碼的截圖。
+我們可以看到～/duckietown/catkin\_ws/src/duckietown/config/baseline/dagu\_car/car\_cmd\_switch\_node/default.yaml這個檔案，下圖是部分程式碼的截圖。
 \\
 \\我們可以先看到mappings的部分，它列了很多狀態及相對應的關鍵字，像是LANE\_FOLLOWING這個狀態就對應到lane這個關鍵字，JOYSTICK\_CONTROL這個狀態就對應到joystick這個關鍵字。
 \\
@@ -470,14 +473,14 @@ duckiebot $ cd ~/duckietown
 \\duckiebot \$ sudo apt-get install libblas-dev liblapack-dev libatlas-base-dev gfortran -y
 \\
 \\執行 lane following:
-\\duckiebot \$ cd \~/duckietown
+\\duckiebot \$ cd ～/duckietown
 \\duckiebot \$ source environment.sh
 \\duckiebot \$ source set\_ros\_master.sh duckiebot
 \\duckiebot \$ source set\_vehicle\_name.sh duckiebot
 \\duckiebot \$ roslaunch duckietown\_demos lane\_following.launch veh:=duckiebot \\line\_detector\_param\_file\_name:=universal
 \\
 \\設定FSM:
-\\laptop \$ cd \~/duckietown
+\\laptop \$ cd ～/duckietown
 \\laptop \$ source environment.sh
 \\laptop \$ source set\_ros\_master.sh duckiebot
 \\laptop \$ rosservice call /duckiebot/fsm\_node/set\_state LANE\_FOLLOWING

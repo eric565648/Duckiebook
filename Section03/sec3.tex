@@ -41,7 +41,7 @@ Jupyter Notebook是一個網路應用程式，可以在裡面書寫程式碼並�
 \subsection{小試身手！}
 開啟Jupyter Notebook
 \\接下來我們就來做一些練習，這裡會特別解釋Duckietown裡面會用到的部分。首先我們要先用Jupyter notebook打開練習用的檔案。
-\\\$ duckietop@ cd ~/duckietown/tutorials/summer2017\_nctu/
+\\\$ duckietop@ cd ～/duckietown/tutorials/summer2017\_nctu/
 \\\$ duckietop@ jupyter notebook 4-1.python\_tutorial.ipynb
 \\\\快捷鍵教學
 \\在快捷鍵的部分，我們按上下可以在不同的區間(cell)之間移動，按下Enter可以進入到cell裡面進行編輯，按下ESC可以離開。Shift+Enter一起按下就可以執行該區段的程式碼。按下a/b可以分別在該cell的上面或下面加一個新的cell，連按dd則可以刪除不需要的cell。1/2/3則可以分別加上不同粗細的註解。
@@ -237,7 +237,7 @@ HSV Color Space (HSV色彩空間)
     \end{center}
 \end{figure}
 \\
-這是蘋果電腦的調色盤，他就是使用HSV色彩空間調出各種顏色。HSV色彩空間其實就是另一種表示顏色的方式，就像我們平常使用的RGB。那我們可以看到圖中，”Hue”表示類似不同的色彩區域，“Saturation”則類似色彩飽和度，”Value”則類似色彩量的多寡。而每個值分別是0~255。(除了”Hue”是0~127)
+這是蘋果電腦的調色盤，他就是使用HSV色彩空間調出各種顏色。HSV色彩空間其實就是另一種表示顏色的方式，就像我們平常使用的RGB。那我們可以看到圖中，”Hue”表示類似不同的色彩區域，“Saturation”則類似色彩飽和度，”Value”則類似色彩量的多寡。而每個值分別是0～255。(除了”Hue”是0～127)
 \\至於為何要使用HSV色彩空間則是因為，在HSV空間裡差不多的顏色會是在連起來的區塊裡，較適合我們拿來做色彩的判斷。
 \\\\HSV Thresholding (HSV閾質判斷)
 如果我們要找出黃色和白色線段，就要找出圖中黃色和白色的區域。
@@ -385,14 +385,14 @@ State(狀態)可以用來描述一系列機器人與環境可以對未來造成�
 \end{figure}
 \\
 接下來我們需要把車子上的launch打開，已接受筆電傳的訊息。記得將car13改成你的車子的名稱
-\\\$ duckiebot: cd ~/duckietown
+\\\$ duckiebot: cd ～/duckietown
 \\\$ duckiebot: source environment.sh
 \\\$ duckiebot: source set\_ros\_master.sh
 \\\$ duckiebot: roslaunch duckietown\_nctu\_wama joystick\_jupyter.launch veh:=car13
 \\\\最後我們要開啟Jupyter Notebook來控制車子。
-\\\$ duckietop: source ~/duckietown/catkin\_ws/devel/setup.bash
-\\\$ duckietop: source ~/duckietown/set\_ros\_master.sh car13
-\\\$ duckietop: cd ~/duckietown/tutorials/summer2017\_nctu
+\\\$ duckietop: source ～/duckietown/catkin\_ws/devel/setup.bash
+\\\$ duckietop: source ～/duckietown/set\_ros\_master.sh car13
+\\\$ duckietop: cd ～/duckietown/tutorials/summer2017\_nctu
 \\\$ duckietop: jupyter notebook 4-3.lane\_filter\_drive.ipynb
 
 
